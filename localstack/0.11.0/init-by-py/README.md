@@ -1,4 +1,4 @@
-# localstack init by shell py
+# localstack init by py
 
 ## AWS SAMプロジェクトを以下のコマンドで使っておきました
 cd qitta-example/localstack/0.11.0/init-by-py
