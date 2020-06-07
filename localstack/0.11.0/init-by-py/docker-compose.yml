@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  pip_installer:
+    container_name: 'pip_installer'
+    image: python:3.7-alpine3.10
+    tty: true
+    working_dir: /workspace/sam-lambda
+    environment:
+      LAMBDA_ZIP_PATH: /workspace/sam-lambda/hello_world/lambda.zip
+    volumes:
+      - ./sam-lambda:/workspace/sam-lambda
+
+  localstack:
+    container_name: 'localstack-dev'
+    image: localstack/localstack:0.11.0
+    ports:
+      - '4566:4566'
+    environment:
+      SERVICES: lambda,logs,dynamodb
+      DEBUG: 1
+      HOSTNAME_EXTERNAL: localstack
+      EDGE_PORT: 4566
+      PORT_WEB_UI: 8080
+
+      AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+      AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      AWS_DEFAULT_REGION: us-east-1
+      LAMBDA_ZIP_PATH: /workspace/sam-lambda/hello_world/lambda.zip
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # 「Cannot connect to the Docker daemon at unix:///var/run/docker.sock.」を防ぐ
+      - ./initaws:/docker-entrypoint-initaws.d
+      - ./tmp/localstack:/tmp/localstack
+
+      - ./sam-lambda:/workspace/sam-lambda
+    depends_on:
+      - pip_installer
+
