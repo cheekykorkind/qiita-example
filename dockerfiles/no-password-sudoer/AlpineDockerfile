@@ -1,0 +1,6 @@
+FROM alpine:3.11
+
+RUN apk add sudo
+
+RUN adduser -D -u 1001 -s /bin/sh -G wheel alpine-sudoer
+RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
