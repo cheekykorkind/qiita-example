@@ -7,6 +7,6 @@ docker volume rm $(docker volume ls -qf dangling=true)
 yes | docker network prune
 yes | docker volume prune
 
-docker images -a | grep "deploy_mockmock_deploy" | awk '{print $3}' | xargs docker rmi --force
+docker images -a | grep "aws-account-management" | awk '{print $3}' | xargs docker rmi --force
 
 DOCKER_UID=$(id -u $USER) DOCKER_GID=$(id -g $USER) docker-compose up -d
