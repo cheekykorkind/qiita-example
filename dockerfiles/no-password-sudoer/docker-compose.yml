@@ -1,0 +1,33 @@
+
+version: '3'
+
+services:
+  alpine-sudoer:
+    container_name: 'alpine-sudoer'
+    build:
+      context: .
+      dockerfile: AlpineDockerfile
+    tty: true
+
+  debian-sudoer:
+    container_name: 'debian-sudoer'
+    build:
+      context: .
+      dockerfile: DebianDockerfile
+    tty: true
+
+  ubuntu-sudoer:
+    container_name: 'ubuntu-sudoer'
+    build:
+      context: .
+      dockerfile: UbuntuDockerfile
+    tty: true
+
+  centos-sudoer:
+    container_name: 'centos-sudoer'
+    build:
+      context: .
+      dockerfile: CentosDockerfile
+    tty: true
+
+    

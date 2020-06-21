@@ -1,0 +1,6 @@
+FROM centos:7
+
+RUN yum -y install sudo
+
+RUN useradd --uid 1001 --create-home --shell /bin/bash -G wheel,root centos-sudoer
+RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

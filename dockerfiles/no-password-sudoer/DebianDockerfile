@@ -1,0 +1,6 @@
+FROM debian:buster-slim
+
+RUN apt update && apt install -y sudo
+
+RUN useradd --uid 1001 --create-home --shell /bin/sh -G sudo,root debian-sudoer
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
