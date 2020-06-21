@@ -20,8 +20,8 @@ Default region name [None]:ap-northeast-1
 Default output format [None]:
 ```
 
-- 環境に合わせてterraformデレクトリーに移動します
-  - `cd qitta-example/terraform/aws-account-management/demo`
+- terraformデレクトリーに移動します
+  - `cd ~/terraform/demo`
 
 - terraform initする
   - `terraform init`
@@ -55,7 +55,7 @@ Default region name [None]:ap-northeast-1
 Default output format [None]:
 ```
 
-- 環境に合わせてterraformデレクトリーに移動します
+- terraformデレクトリーに移動します
   - `cd qitta-example/terraform/aws-account-management/demo`
 
 - terraform initする
