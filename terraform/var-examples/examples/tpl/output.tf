@@ -20,5 +20,5 @@ data "template_file" "ecs-task-definition" {
 }
 
 output "output-template-two" {
-  value = data.template_file.template-two.rendered
+  value = data.template_file.ecs-task-definition.rendered
 }
