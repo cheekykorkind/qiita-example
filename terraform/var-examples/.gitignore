@@ -1,0 +1,4 @@
+# terraformの状態ファイルはpushしない
+/examples/*/.terraform/*
+/examples/*/terraform.tfstate
+/examples/*/terraform.tfstate.backup

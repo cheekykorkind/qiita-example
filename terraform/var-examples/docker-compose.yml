@@ -1,0 +1,21 @@
+version: '3'
+
+# terraform-0.12.26
+services:
+  var-examples:
+    container_name: 'var-examples'
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+        UNAME: $USER
+    environment:
+      AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+      AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      AWS_DEFAULT_REGION: us-east-1
+    tty: true
+    working_dir: '/home/$USER/terraform'
+    volumes:
+      - ./examples:/home/$USER/terraform/examples
