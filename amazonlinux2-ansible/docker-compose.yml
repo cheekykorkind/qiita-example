@@ -1,0 +1,22 @@
+version: '3'
+
+# amazonlinux2-ansible
+services:
+  amazonlinux2-ansible:
+    container_name: 'amazonlinux2-ansible'
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+    # environment:
+    #   AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+    #   AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    #   AWS_DEFAULT_REGION: us-east-1
+    tty: true
+    ports:
+      - '3000:22'
+    # working_dir: '/home/$USER/workspace'
+    volumes:
+      - ./docker-ssh:/home/ec2-user/.ssh
