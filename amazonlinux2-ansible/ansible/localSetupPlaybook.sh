@@ -1,13 +1,10 @@
 
-# PRIVATE_KEYは開発環境で作ったvagrantの秘密鍵です。
-PRIVATE_KEY=../../docker-ssh/docker-ssh-key
+# PRIVATE_KEYの位置
+PRIVATE_KEY=../docker-ssh/docker-ssh-key
 
 ansible-playbook localSetupPlaybook.yml -i dev_hosts -u ec2-user --private-key ${PRIVATE_KEY} -vvv
 
 # ansible-playbook localSetupPlaybook.yml -i dev_hosts.yml -u ec2-user --private-key ${PRIVATE_KEY}
-
-
-
 
 # ansible-playbook localSetupPlaybook.yml -i dev_hosts -u ec2-user -K --private-key ../../docker-ssh/docker-ssh-key
 
