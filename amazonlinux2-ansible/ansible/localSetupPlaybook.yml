@@ -1,9 +1,0 @@
-- hosts: localnginx
-# - hosts: localnginx2
-  become: true
-  connection: local
-  # vars:
-  #   username: ec2-user
-
-  roles:
-    - nginx

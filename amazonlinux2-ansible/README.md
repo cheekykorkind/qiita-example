@@ -5,7 +5,14 @@
   - `cd qitta-example/terraform/amazonlinux2-ansible`
 2. dockerコンテナをバックグラウンドで起動します
   - `DOCKER_UID=$(id -u $USER) DOCKER_GID=$(id -g $USER) docker-compose up -d`
-3. dockerコンテナに入ります
+3. Ansibleのplaybookがあるデレクトリーに移動します
+  - `cd qitta-example/terraform/amazonlinux2-ansible/ansible`
+4. Ansible実行します(両方同じです。どっちでも実行可能です)
+  - `sh local_docker_book.sh`
+  - `ansible-playbook local_docker_book.yml -i local_hosts -u ec2-user --private-key ../docker-ssh/docker-ssh-key`
+
+
+1. Ansibleが実行を確認したいなら、dockerコンテナに入ります（選択）
   - `docker exec -it amazonlinux2-ansible /bin/bash`
 
 - amazonlinux2-ansible dockerの掃除がしたいなら実行（選択）
