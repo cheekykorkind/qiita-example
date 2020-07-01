@@ -1,6 +1,9 @@
 # ansible to docker
 
 ## 試す順番
+ansibleはファイル`nginx.repo`を2箇所（`/etc/yum.repos.d/nginx.repo`、`/home/ec2-user/nginx.repo`）にをコピーする内容です。
+実行成功したら、dockerコンテナの`/etc/yum.repos.d/nginx.repo`、`/home/ec2-user/nginx.repo`にファイルが見えます。
+
 1. docker composeがあるデレクトリー移動に移動します 
   - `cd qitta-example/ansible/to-docker`
 2. dockerコンテナをバックグラウンドで起動します
