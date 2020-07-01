@@ -1,0 +1,5 @@
+- hosts: local_docker
+  become: true
+
+  roles:
+    - nginx

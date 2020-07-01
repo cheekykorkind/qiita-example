@@ -1,0 +1,6 @@
+---
+  - name: copy test1
+    copy: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo owner=root group=root mode=0644
+  
+  - name: copy test2
+    copy: src=nginx.repo dest=/home/ec2-user/nginx.repo owner=root group=root mode=0644

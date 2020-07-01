@@ -1,0 +1,16 @@
+version: '3'
+
+# ansible 2.9.10
+services:
+  amazonlinux2-ansible:
+    container_name: 'amazonlinux2-ansible'
+    build:
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+    tty: true
+    ports:
+      - '55556:22'
+    volumes:
+      - ./docker-ssh:/home/ec2-user/.ssh
