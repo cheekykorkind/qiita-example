@@ -1,12 +1,12 @@
-# ec2 test
+# ansible to docker
 
 ## 試す順番
 1. docker composeがあるデレクトリー移動に移動します 
-  - `cd qitta-example/terraform/amazonlinux2-ansible`
+  - `cd qitta-example/ansible/to-docker`
 2. dockerコンテナをバックグラウンドで起動します
   - `DOCKER_UID=$(id -u $USER) DOCKER_GID=$(id -g $USER) docker-compose up -d`
 3. Ansibleのplaybookがあるデレクトリーに移動します
-  - `cd qitta-example/terraform/amazonlinux2-ansible/ansible`
+  - `cd qitta-example/ansible/to-docker/ansible`
 4. Ansible実行します(両方同じです。どっちでも実行可能です)
   - `sh local_docker_book.sh`
   - `ansible-playbook local_docker_book.yml -i local_hosts -u ec2-user --private-key ../docker-ssh/docker-ssh-key`
