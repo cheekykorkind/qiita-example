@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  rails-puma-db:
+    container_name: 'rails-puma-db'
+    image: postgres:11.7-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5433:5432'
+
+# rails 6.0.3.2
+# DOCKER_UID=$(id -u $USER) DOCKER_GID=$(id -g $USER) docker-compose up
+  rails-puma-web:
+    container_name: 'rails-puma-web'
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace/myapp:cached
+    depends_on:
+      - rails-puma-db
+    ports:
+      - '3000:3000'
+    environment:
+      RAILS_ENV: development
+    # entrypoint: /bin/bash
+    entrypoint: |
+      bash -e -c "
+      sudo chown -R ec2-user /workspace/myapp
+      rm -f ./tmp/pids/server.pid
+      rm -rf ./tmp/*
+      mkdir -p ./tmp/pids
+      yarn install --check-files
+      bundle exec rails db:create db:migrate
+      bundle exec rails assets:precompile
+      bundle exec rails s -p 3000 -b 0.0.0.0
+      "
