@@ -22,7 +22,7 @@ docker images -a | grep "rails-puma" | awk '{print $3}' | xargs docker rmi --for
 ```
 
 
-## Rails6プロジェクト作成手順（rails6.0.3.2）
+## Rails6プロジェクト作成までの手順（rails6.0.3.2）
 1. docker composeがあるデレクトリー移動に移動しました
   - `cd qitta-example/rails/6/puma`
 2. Dockerfileとentrypoint.shに**dbマイグレーション、puma起動コマンド部分なし**で、rails起動させるdockerコンテナを起動しました
