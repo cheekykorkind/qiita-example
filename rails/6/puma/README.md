@@ -8,7 +8,7 @@
 3. dockerコンテナに入ります
   - `docker exec -it rails-puma-web /bin/bash`
 
-- terraform dockerの掃除がしたいなら実行（選択）
+- rails-puma dockerの掃除がしたいなら実行（選択）
   - 実行内容 : 実行中の全dockerコンテナ・docker network・docker volumeを停止する、削除する、**imageはrails-puma dockerだけ削除**する
 ```
 docker container stop $(docker container ls -aq)
