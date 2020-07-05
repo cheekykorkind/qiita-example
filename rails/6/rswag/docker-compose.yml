@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  rails-rswag-db:
+    container_name: 'rails-rswag-db'
+    image: postgres:11.7-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5433:5432'
+
+# rails 6.0.3.2
+# DOCKER_UID=$(id -u $USER) DOCKER_GID=$(id -g $USER) docker-compose up
+  rails-rswag-web:
+    container_name: 'rails-rswag-web'
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      context: .
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace/myapp:cached
+    depends_on:
+      - rails-rswag-db
+    ports:
+      - '3000:3000'
+    environment:
+      RAILS_ENV: development
