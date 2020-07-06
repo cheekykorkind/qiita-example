@@ -1,0 +1,175 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1 (en)",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "basePath": "/api/v1",
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Book list",
+        "tags": [
+          "Book list Group"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "On Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/books/create": {
+      "post": {
+        "summary": "Create Book",
+        "tags": [
+          "Book Create Group"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "examples": {
+              "application/json": {
+                "name": "myNewBook",
+                "description": "It will be awesome book"
+              }
+            },
+            "name": "contents",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            },
+            "required": true,
+            "description": "Will create book"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "On Not Found",
+            "examples": {
+              "application/json": {
+                "status": "OPERATION FAIL",
+                "message": "something wrong"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "200": {
+            "description": "On Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "action": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "action",
+                    "value"
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "data"
+              ]
+            },
+            "examples": {
+              "application/json": {
+                "status": "SUCCESS",
+                "message": "It is for you",
+                "data": {
+                  "action": "create",
+                  "value": 11
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
