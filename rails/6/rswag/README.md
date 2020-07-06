@@ -51,3 +51,6 @@ RAILS_ENV=test bundle exec rspec
 - 手動でAPIとrspec作成
    - `rswag/spec/api/v1/books_spec.rb`
    - `rswag/app/controllers/api/v1/books_controller.rb`
+
+## rswag周りの実装が書かれているcommit
+https://github.com/cheekykorkind/qiita-example/commit/bb97a13181dee8d45b607ace05b889c61ed63e6e
