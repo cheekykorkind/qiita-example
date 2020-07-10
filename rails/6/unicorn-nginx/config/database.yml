@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username: postgres
+  password: postgres
+  host: unicornnx-db
+  database: unicorn_nginx_development
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username: postgres
+  password: postgres
+  host: unicornnx-db
+  database: unicorn_nginx_test
