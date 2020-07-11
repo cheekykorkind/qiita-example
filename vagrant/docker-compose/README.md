@@ -1,6 +1,6 @@
-# CentOS7 docker-compose
+# vagrant CentOS7 docker-compose
 
-1. docker composeがあるデレクトリー移動に移動
+1. Vagrantfileがあるデレクトリー移動に移動
   - `cd qitta-example/vagrant/docker-compose`
 2. vagrantでVM起動
   - `vagrant up`
