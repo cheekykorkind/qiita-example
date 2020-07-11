@@ -1,0 +1,5 @@
+# docker run -d --label-file ./labels nginx:1.19.0-alpine 
+
+com.docker.compose.oneoff=False
+com.docker.compose.project=allow-raw-docker-as-compose
+com.docker.compose.service=compose-postgres11.7
