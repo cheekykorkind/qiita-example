@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  compose-postgres11.7:
+    container_name: 'compose-postgres11.7'
+    image: postgres:11.7-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5433:5432'
+
+  compose-postgres13:
+    container_name: 'compose-postgres13'
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5434:5432'
