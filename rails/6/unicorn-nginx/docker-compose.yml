@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  unicornnx-db:
+    container_name: 'unicornnx-db'
+    image: postgres:11.7-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5433:5432'
+
+  unicornnx-web:
+    container_name: 'unicornnx-web'
+    user: $DOCKER_UID:$DOCKER_GID
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+      args:
+        UID: $DOCKER_UID
+        GID: $DOCKER_GID
+    tty: true
+    stdin_open: true
+    volumes:
+      - nginx_socket:/workspace/myapp/tmp
+      - web_public:/workspace/myapp/public
+    depends_on:
+      - unicornnx-db
+    environment:
+      RAILS_ENV: development
+    entrypoint: |
+      bash -e -c "
+      sudo chown -R ec2-user /workspace/myapp
+
+      # Remove a potentially pre-existing server.pid for Rails.
+      rm -f ./tmp/pids/server.pid
+      rm -rf ./tmp/*
+      mkdir -p ./tmp/pids
+
+      bundle exec rails assets:precompile
+      bundle exec rails db:create db:migrate
+      bundle exec unicorn -c ./config/unicorn/development.rb
+      "
+
+  unicornnx-nginx:
+    container_name: unicornnx-nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - '3000:80'
+    depends_on:
+      - unicornnx-web
+    volumes:
+      - nginx_socket:/workspace/myapp/tmp
+      - web_public:/workspace/myapp/public
+
+# NginxのUnix domain socketのためのvolume
+volumes:
+  nginx_socket:
+    driver: local
+  web_public:
+    driver: local
