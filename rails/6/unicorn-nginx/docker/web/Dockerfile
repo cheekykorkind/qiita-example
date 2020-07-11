@@ -22,3 +22,4 @@ COPY Gemfile.lock /workspace/myapp/Gemfile.lock
 COPY . /workspace/myapp
 
 RUN bundle install
+RUN yarn install --check-files
