@@ -7,8 +7,6 @@ output "output-s3-policy-template" {
 }
 
 
-# https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWSCLI_Fargate.html#ECS_AWSCLI_Fargate_register_task_definition
-
 # https://www.terraform.io/docs/configuration/functions/file.html
 # https://www.terraform.io/docs/providers/template/d/file.html
 data "template_file" "ecs-task-definition" {
